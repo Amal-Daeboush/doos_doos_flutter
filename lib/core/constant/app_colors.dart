@@ -31,6 +31,7 @@ class AppColors {
   static const Color white = Color(0xffffffff);
   static const Color red = Colors.redAccent;
   static const Color red2 = Color(0xffF54B5F);
+  static const Color red3 = Color(0xffFF0707);
   static Color redlight = Color(0xffF54B5F).withOpacity(0.2);
   static const greyShadowBottom = BoxShadow(
     color: Color.fromARGB(78, 44, 44, 44),

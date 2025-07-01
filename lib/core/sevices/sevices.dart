@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:doss_doss/core/sevices/key_shared_perfences.dart';
+import 'package:doss_doss/model/profile_model.dart';
 import 'package:doss_doss/model/user_model.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,31 +13,25 @@ class MyServices extends GetxService {
 
   Future<MyServices> initialize() async {
     shared = await SharedPreferences.getInstance();
-  
+
     ConstData.token = await getValue(SharedPreferencesKey.tokenkey) ?? '';
-  /*   ConstData.addressUser = await getValue(SharedPreferencesKey.address) ?? '';
+    /*   ConstData.addressUser = await getValue(SharedPreferencesKey.address) ?? '';
     ConstData.nameUser = await getValue(SharedPreferencesKey.userName) ?? '';
     ConstData.phoneUser = await getValue(SharedPreferencesKey.userPhone) ?? '';
     ConstData.image = await getValue(SharedPreferencesKey.image) ?? ''; */
     ConstData.isBoarding =
         await getValue(SharedPreferencesKey.isBoarding) ?? '';
-  UserModel? userInfo = await getUserInfo();
+    UserModel? userInfo = await getUserInfo();
 
     if (userInfo != null) {
       ConstData.user = userInfo;
-     // ConstData.userid = userInfo.user.id.toString();
+      // ConstData.userid = userInfo.user.id.toString();
     } else {
       print('User info is null, handle accordingly');
-    } 
+    }
 
     return this;
   }
-
-
-
-
-
-
 
   static Future<void> saveValue(String key, String value) async {
     try {
@@ -64,7 +59,7 @@ class MyServices extends GetxService {
     return ConstData.token;
   }
 
- /*  setConstAddress() async {
+  /*  setConstAddress() async {
     ConstData.addressUser = await getValue(SharedPreferencesKey.address) ?? '';
     print('your address is ......');
     print(ConstData.addressUser);
@@ -97,7 +92,7 @@ class MyServices extends GetxService {
     print('your user is ......');
     print(ConstData.user);
     return ConstData.user;
-  } 
+  }
 
   setConstBoarding() async {
     ConstData.isBoarding =
@@ -107,7 +102,7 @@ class MyServices extends GetxService {
     return ConstData.isBoarding;
   }
 
-   Future<UserModel?> getUserInfo() async {
+  Future<UserModel?> getUserInfo() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userJson = prefs.getString(SharedPreferencesKey.user);
 
@@ -116,14 +111,27 @@ class MyServices extends GetxService {
     }
 
     return null;
-  } 
+  }
+
+  Future<ProfileModel?> getProfile() async {
+    //  final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? userJson = MyServices.shared.getString(
+      SharedPreferencesKey.profile,
+    );
+
+    if (userJson != null && userJson.isNotEmpty) {
+      return ProfileModel.fromJson(jsonDecode(userJson));
+    }
+
+    return null;
+  }
 
   //save User Information
   Future<void> saveUserInfo(UserModel user) async {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       String userJson = jsonEncode(user.toJson());
-      String userJsonId = jsonEncode(user.user.id);
+      String userJsonId = jsonEncode(user.user?.id);
       await prefs.setString(SharedPreferencesKey.user, userJson);
       await prefs.setString(SharedPreferencesKey.userId, userJsonId);
       print(' user is ......');
@@ -131,8 +139,23 @@ class MyServices extends GetxService {
     } catch (e) {
       print("Error saving user info: $e");
     }
-  } 
+  }
 
+  Future<void> saveProfileInfo(ProfileModel user) async {
+    try {
+      String userProfile = jsonEncode(user.toJson());
+      // String userJsonId = jsonEncode(user.user?.id);
+      await MyServices.shared.setString(
+        SharedPreferencesKey.profile,
+        userProfile,
+      );
+      // await prefs.setString(SharedPreferencesKey.userId, userJsonId);
+      print(' profile is ......');
+      print(user);
+    } catch (e) {
+      print("Error saving user info: $e");
+    }
+  }
 
   // clear shared
   Future<void> clear() async {
@@ -140,6 +163,7 @@ class MyServices extends GetxService {
       await shared.clear();
       ConstData.token = '';
       ConstData.isBoarding = '';
+
       print("All shared preferences cleared");
     } catch (e) {
       print("Error clearing shared preferences: $e");

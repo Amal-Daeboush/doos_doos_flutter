@@ -10,5 +10,6 @@ class SharedPreferencesKey {
       image = "image",
       cart = 'carts',
       address = "address",
+      profile = "profile",
       userPhone = "userPhone";
 }

@@ -3,8 +3,8 @@ import 'package:doss_doss/core/constant/styles.dart';
 import 'package:doss_doss/view/bussines%20screen/view/buissines_screen.dart';
 import 'package:doss_doss/view/checkout%20screen/view/payment_method_screen.dart';
 import 'package:doss_doss/view/my%20cars/view/list_your_car_screen.dart';
-import 'package:doss_doss/view/add%20a%20car/view/first_tell_about_car_screen.dart';
 import 'package:doss_doss/view/profile%20screen/view/edit_profile_screen.dart';
+import 'package:doss_doss/view/profile%20screen/widgets/logout_dialog.dart';
 import 'package:doss_doss/view/profile%20screen/widgets/profile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,7 +43,7 @@ class ProfileScreen extends StatelessWidget {
             ProfileCard(
               name: 'List your car',
               image: AppImageAsset.icon_car,
-              onPressed:   () => Get.to(
+              onPressed:   () => Get.off(
                     () => ListYourCarScreen(),
                     transition: Transition.downToUp,
                     duration: Duration(milliseconds: 300),
@@ -80,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             ProfileCard(name: 'History', icon: Iconsax.info_circle),
             ProfileCard(name: 'About', icon: Iconsax.info_circle),
-            ProfileCard(name: 'Log out', icon: Icons.logout),
+            ProfileCard(name: 'Log out', icon: Icons.logout,onPressed:  LogoutDialog,),
             SizedBox(height: 100.h),
           ],
         ),

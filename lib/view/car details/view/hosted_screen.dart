@@ -3,7 +3,7 @@ import 'package:doss_doss/core/constant/styles.dart';
 import 'package:doss_doss/view/car%20details/widgets/hosted/custom_divider.dart';
 import 'package:doss_doss/view/car%20details/widgets/hosted/hosted_info_column.dart';
 import 'package:doss_doss/view/car%20details/widgets/retal%20container/review_card.dart';
-import 'package:doss_doss/view/home/widgets/custom_car.dart';
+import 'package:doss_doss/view/home/widgets/car%20card/custom_car.dart';
 import 'package:doss_doss/view/widgets/app%20bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

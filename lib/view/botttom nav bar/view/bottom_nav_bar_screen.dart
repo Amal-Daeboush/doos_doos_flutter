@@ -62,7 +62,7 @@ class BottomNavBarScreen extends StatelessWidget {
                       ),
 
                       buildNavItem(
-                        title: 'Rental',
+                        title: 'Rental a car',
                         icon: Iconsax.key,
                         isSelected: controller.page == 2,
                         onTap: () => controller.onTap(2),

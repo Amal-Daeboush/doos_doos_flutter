@@ -7,12 +7,19 @@ import '../../../core/constant/styles.dart';
 class BookCarButton extends StatelessWidget {
   final String name;
   final void Function()? onTap;
-  const BookCarButton({super.key, required this.name, this.onTap});
+  final bool isCormorantFont;
+
+  const BookCarButton({
+    super.key,
+    required this.name,
+    this.onTap,
+    required this.isCormorantFont,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-    onTap: onTap,
+      onTap: onTap,
       child: Container(
         // width:issmall?null: HelperFunctions.screenWidth(),
         decoration: BoxDecoration(
@@ -20,12 +27,15 @@ class BookCarButton extends StatelessWidget {
           color: AppColors.primary,
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          padding: EdgeInsets.symmetric(
+            vertical:isCormorantFont ? 5 :  10,
+            horizontal:isCormorantFont ? 15 :  10,
+          ),
           child: Text(
             name,
             style: Styles.style18.copyWith(
               color: AppColors.white,
-              fontFamily: 'Montserrat',
+              fontFamily: isCormorantFont ? 'Cormorant' : 'Montserrat',
               fontSize: 12.sp,
             ),
           ),

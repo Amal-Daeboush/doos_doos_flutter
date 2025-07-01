@@ -20,7 +20,7 @@ class ChatInputSection extends StatelessWidget {
       width: HelperFunctions.screenWidth(),
       //  padding: const EdgeInsets.symmetric( vertical: 5.0),
       decoration: BoxDecoration(
-        boxShadow: [AppColors.whiteShadowtop],
+        boxShadow: isChatSupport?[]: [AppColors.whiteShadowtop],
         color:    isChatSupport?Colors.transparent: AppColors.white,
         //   borderRadius: BorderRadius.circular(25),
       ),

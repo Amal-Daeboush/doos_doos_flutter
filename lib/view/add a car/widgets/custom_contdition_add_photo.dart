@@ -11,10 +11,12 @@ Widget customConditionAddPhoto(String title, bool isNote) {
     child: Row(
       children: [
       isNote?Icon(Iconsax.info_circle,color: AppColors.red,)  :Image.asset(AppImageAsset.checked),
-        Text(
-          title,
-          style: Styles.style14LightMontserrat.copyWith(
-            color: isNote ? AppColors.red : AppColors.primary,
+        Expanded(
+          child: Text(
+            title,
+            style: Styles.style14LightMontserrat.copyWith(
+              color: isNote ? AppColors.red : AppColors.primary,
+            ),
           ),
         ),
       ],

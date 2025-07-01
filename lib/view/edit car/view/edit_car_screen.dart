@@ -10,8 +10,8 @@ import '../../../core/constant/styles.dart';
 import '../../widgets/buttons/custom_buttons.dart';
 import '../../widgets/text field/custom_text_field.dart';
 
-class SecondTellAboutCarScreen extends StatelessWidget {
-  const SecondTellAboutCarScreen({super.key});
+class EditCarScreen extends StatelessWidget {
+  const EditCarScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,20 +27,9 @@ class SecondTellAboutCarScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Tell us about your car', style: Styles.style26),
-                  SizedBox(height: 25.h),
-                  Text(
-                    'Select Car Brand',
-                    style: Styles.style14LightMontserrat,
-                  ),
-                  SizedBox(height: 5.h),
-                  Text(
-                    'Select your car\'s brand and model from the list below to ensure accurate listing and better visibility',
-                    style: Styles.style14LightMontserrat.copyWith(
-                      fontSize: 10.sp,
-                    ),
-                  ),
-                  SizedBox(height: 25.h),
+                  Text('car details', style: Styles.style26),
+                  SizedBox(height: 35.h),
+
                   CustomTextFormField(
                     onTap: () => controller.selectBrand(context),
                     readOnly: true,
@@ -106,35 +95,67 @@ class SecondTellAboutCarScreen extends StatelessWidget {
                     hintText: 'Transmission',
                     hintTextInField: 'manual',
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'I certify i paid applicable sales or related taxes on the purchase of this car',
-                          style: Styles.style14LightMontserrat,
-                        ),
-                      ),
-                      Checkbox(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        value: false,
-                        onChanged: (value) {},
-                        side: BorderSide(color: AppColors.primary, width: 2),
-
-                        checkColor: Colors.black, // لون علامة الصح ✓
-                        fillColor: MaterialStateProperty.all(
-                          Colors.transparent,
-                        ), // لون خلفية شفاف
-                      ),
-                    ],
+                  SizedBox(height: 16.h),
+                  CustomTextFormField(
+                    //  onTap: () => controller.selectTransmission(context),
+                    readOnly: true,
+                    suffixIcon: Icon(Iconsax.arrow_down_1),
+                    borderColor: AppColors.primary,
+                    borderRadius: BorderRadius.circular(10),
+                    obscureText: false,
+                    isPassWord: false,
+                    // controller: controller.transmissionController,
+                    hintText: 'Mechanical condition',
+                    hintTextInField: '',
                   ),
+                  SizedBox(height: 16.h),
+                  CustomTextFormField(
+                    //  onTap: () => controller.selectTransmission(context),
+                    readOnly: true,
+                    suffixIcon: Icon(Iconsax.arrow_down_1),
+                    borderColor: AppColors.primary,
+                    borderRadius: BorderRadius.circular(10),
+                    obscureText: false,
+                    isPassWord: false,
+                    // controller: controller.transmissionController,
+                    hintText: 'Do all seats have seatbelts?',
+                    hintTextInField: '',
+                  ),
+                  SizedBox(height: 16.h),
+                  CustomTextFormField(
+                    //  onTap: () => controller.selectTransmission(context),
+                    readOnly: true,
+                    suffixIcon: Icon(Iconsax.arrow_down_1),
+                    borderColor: AppColors.primary,
+                    borderRadius: BorderRadius.circular(10),
+                    obscureText: false,
+                    isPassWord: false,
+                    // controller: controller.transmissionController,
+                    hintText: 'license plate number',
+                    hintTextInField: '',
+                  ),
+                  SizedBox(height: 16.h),
+                  CustomTextFormField(
+                    //  onTap: () => controller.selectTransmission(context),
+                    readOnly: false,
+                    maxLength: 4,
+                    suffixIcon: Icon(Iconsax.edit_2),
+                    borderColor: AppColors.primary,
+                    borderRadius: BorderRadius.circular(10),
+                    obscureText: false,
+                    isPassWord: false,
+                    // controller: controller.transmissionController,
+                    hintText: 'Additional information',
+                    hintTextInField:
+                        'Any additional details our team should be aware of during the review process (e.g., modifications, previous repairs)?',
+                  ),
+
                   SizedBox(height: 16.h),
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: CustomButtons(
-                      onTap: controller.continuee,
-                      title: 'Continue',
+                      onTap: () => Get.back(),
+                      title: 'Save changes',
                       isBlack: true,
                       issmall: false,
                       border: AppColors.primary,

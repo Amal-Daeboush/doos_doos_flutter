@@ -1,9 +1,8 @@
 import 'package:doss_doss/core/constant/const_data.dart';
 
-
 class ApiLinks {
-  //static const String server = "http://192.168.1.12:8000/api";
-  static const String server= "https://highleveltecknology.com/doss/api";
+  static const String server = "http://192.168.1.12:8000/api";
+  //static const String server= "https://highleveltecknology.com/doos/api";
   // ================================= Images ================================== //
   static const String imagesStatic = "";
   // ================================= Auth ================================== //
@@ -11,10 +10,16 @@ class ApiLinks {
   static const String login = "$server/login";
   static const String google = "$server/auth/google/redirect";
   static const String facebook = "$server/auth/facebook/redirect";
-  static const String verify_otp = "$server/verify_otp";
+  static const String verify_email = "$server/verfiy_email";
+  static const String forget_pass = "$server/sendOTP";
+  static const String reseve_otp = "$server/receiveOTP";
+  static const String reset_pass = "$server/resetpassword";
 
-  // ================================= CATEGORY ================================== //
-  static const String getCategories = "$server/user/categories/get_all";
+  // ================================= car ================================== //
+  static const String cars_filter = "$server/cars/filter";
+  static const String get_cars = "$server/cars/index";
+  // ================================= booking ================================== //
+  static const String booking_car = "$server/renter/cars/bookings/store";
   // ================================= favorites =====================
   static const String getFavoriteProduct =
       "$server/user/favourites/products/get_all";
@@ -22,9 +27,9 @@ class ApiLinks {
   static const String removeFavoriteProduct = "$server/user/favourites/remove";
 
   // ================================= profiles =====================
-  static const String storeProfile = "$server/user/profile/store";
-  static const String updateProfile = "$server/user/profile/update";
-  static const String getProfile = "$server/user/my_info/get";
+  static const String storeProfile = "$server/profile/store_profile";
+  static const String updateProfile = "$server/profile/update_my_profile";
+  static const String getProfile = "$server/profile/get_my_profile";
   static const String postPass = "$server/user/my_info/update";
 
   // ================================= chat =====================

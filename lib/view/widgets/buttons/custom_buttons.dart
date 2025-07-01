@@ -39,7 +39,7 @@ class CustomButtons extends StatelessWidget {
             child: Text(
               title,
               style: Styles.style18.copyWith(
-                color: isBlack ? AppColors.white : AppColors.primary,
+                color: isBlack ? AppColors.white :title=='Remove'?AppColors.white: AppColors.primary,
                 fontFamily: 'Montserrat',
                 fontSize: issmall?14.sp:18.sp
               ),

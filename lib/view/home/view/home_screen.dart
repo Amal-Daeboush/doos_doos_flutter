@@ -1,3 +1,4 @@
+import 'package:doss_doss/core/class/status_request.dart';
 import 'package:doss_doss/view/all%20cars%20screen/view/all_cars_screen.dart';
 import 'package:doss_doss/view/brnds_screen/view/brands_screen.dart';
 import 'package:doss_doss/view/chat/view/chat_support_screen.dart';
@@ -5,8 +6,10 @@ import 'package:doss_doss/view/home/controller/home_controller.dart';
 import 'package:doss_doss/view/home/widgets/appbar_home.dart';
 import 'package:doss_doss/view/home/widgets/book_car_button.dart'
     show BookCarButton;
+import 'package:doss_doss/view/home/widgets/car%20card/car_card_shimmer.dart';
 import 'package:doss_doss/view/home/widgets/custom_brand.dart';
-import 'package:doss_doss/view/home/widgets/custom_car.dart';
+
+import 'package:doss_doss/view/home/widgets/car%20card/custom_car.dart';
 import 'package:doss_doss/view/home/widgets/custom_column_text.dart';
 import 'package:doss_doss/view/home/widgets/custom_row_text.dart';
 import 'package:doss_doss/view/widgets/text%20field/custom_field_search.dart';
@@ -50,9 +53,13 @@ class HomeScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              BookCarButton(name: 'Book a car now'),
+                              BookCarButton(
+                                name: 'Book a car now',
+                                isCormorantFont: false,
+                              ),
                               BookCarButton(
                                 name: 'Chat support',
+                                isCormorantFont: false,
                                 onTap:
                                     () => Get.to(
                                       ChatSupportScreen(),
@@ -65,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: 10.h),
+                          SizedBox(height: 15.h),
                           CustomFieldSearch(),
                           SizedBox(height: 10.h),
                           CustomRowText(
@@ -78,20 +85,23 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 10.h),
-                          SizedBox(
-                            height: 50,
-                            child: ListView.separated(
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              separatorBuilder:
-                                  (context, index) => SizedBox(width: 5),
-                              itemCount: controller.carBrands.length,
-                              itemBuilder:
-                                  (context, index) => CustomBrand(
-                                    carBrand: controller.carBrands[index],
-                                  ),
-                            ),
-                          ),
+                           SizedBox(
+                                height: 50,
+                                child: ListView.separated(
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  separatorBuilder:
+                                      (context, index) => SizedBox(width: 5),
+                                  itemCount:
+                                      controller.carBrands.length,
+                                  itemBuilder:
+                                      (context, index) =>
+                                         CustomBrand(
+                                                carBrand:
+                                                    controller.carBrands[index],
+                                              ),
+                                ),
+                              ),
                           SizedBox(height: 10.h),
                           CustomRowText(
                             'All',
@@ -103,14 +113,28 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           //    SizedBox(height: 30.h),
-                          ListView.separated(
+                       controller.statusRequest == StatusRequest.failure
+                              ? Text('ddd')
+                              :   ListView.separated(
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
+
                             itemBuilder:
-                                (context, index) => CustomCar(isInHost: false),
-                            separatorBuilder:
+                                (context, index) => 
+                                  controller.statusRequest ==
+                                                  StatusRequest.loading
+                                              ? 
+                                               CustomCarShimmer()
+                                               : CustomCar(
+                                  isInHost: false,
+                                  car: controller.cars[index],
+                                ), 
+                           separatorBuilder:
                                 (context, index) => SizedBox(height: 10.h),
-                            itemCount: 3,
+                            itemCount: controller.statusRequest ==
+                                              StatusRequest.loading
+                                          ? 3
+                                          : controller.cars.length,
                           ),
                           SizedBox(height: 100.h),
                         ],

@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../home/widgets/custom_car.dart';
+import '../../home/widgets/car card/custom_car.dart';
 
 class AllCarsScreen extends StatelessWidget {
   const AllCarsScreen({super.key});

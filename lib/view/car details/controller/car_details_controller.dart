@@ -1,34 +1,15 @@
+import 'package:doss_doss/core/constant/app_colors.dart';
 import 'package:doss_doss/core/constant/styles.dart';
-import 'package:doss_doss/view/add%20a%20car/view/second_tell_about_car_screen.dart'
-    show SecondTellAboutCarScreen;
+import 'package:doss_doss/view/home/widgets/book_car_button.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class EnterVinController extends GetxController {
-  TextEditingController vinController = TextEditingController();
-  final GlobalKey<FormState> keyForm = GlobalKey<FormState>();
-  String? vinValidator(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'please fill out this field';
-    }
-
-    if (value.length < 17) {
-      return 'Your VIN should be 17 characters long';
-    }
-
-    return null;
-  }
-
-  sbmitVin() {
-    if (keyForm.currentState!.validate()) {
-      Get.to(
-        () => SecondTellAboutCarScreen(),
-        transition: Transition.downToUp,
-        duration: Duration(milliseconds: 500),
-        curve: Curves.easeOut,
-      );
-    }else{
-       Get.generalDialog(
+class CarDetailsController extends GetxController {
+  RemoveDialog() {
+    // emailController.clear();
+    Get.generalDialog(
       barrierLabel: "Dialog",
       barrierDismissible: true,
       transitionDuration: const Duration(milliseconds: 300),
@@ -38,7 +19,7 @@ class EnterVinController extends GetxController {
             color: Colors.transparent,
             child: Container(
               //   height: 200,
-              width: MediaQuery.of(context).size.width * 0.8,
+              width: MediaQuery.of(context).size.width * 0.7,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -46,20 +27,35 @@ class EnterVinController extends GetxController {
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'VIN Not Recognized',
+                    'Alert',
                     style: Styles.style16Montserrat.copyWith(
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 18.sp,
+                      fontFamily: '',
+                      color: AppColors.red3,
                     ),
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    'Your VIN should be 17 characters long. Please double-check and try again.',
-                    style: Styles.style14LightMontserrat,
+                    'Are you sure you want to remove the car ?',
+                    textAlign: TextAlign.center,
+                    style: Styles.style14LightMontserrat.copyWith(
+                      fontWeight: FontWeight.w900,
+                      fontFamily: '',
+                      fontSize: 14.sp,
+                    ),
                   ),
                   const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      BookCarButton(name: 'Yes',isCormorantFont: true,),
+                      BookCarButton(name: 'No',isCormorantFont: true,),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -76,10 +72,5 @@ class EnterVinController extends GetxController {
         );
       },
     );
-    }
-    // emailController.clear();
-   
-
-    vinController.clear();
   }
 }

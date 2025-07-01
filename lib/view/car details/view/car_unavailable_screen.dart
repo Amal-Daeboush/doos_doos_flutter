@@ -2,7 +2,7 @@ import 'package:doss_doss/core/class/helper_functions.dart';
 import 'package:doss_doss/core/constant/app_colors.dart';
 import 'package:doss_doss/core/constant/styles.dart';
 import 'package:doss_doss/view/all%20cars%20screen/widgets/swith/custom_switch.dart';
-import 'package:doss_doss/view/choose%20your%20car/controller/car_unavailable_controller.dart';
+import 'package:doss_doss/view/car%20details/controller/car_unavailable_controller.dart';
 import 'package:doss_doss/view/widgets/app%20bar/custom_app_bar.dart';
 import 'package:doss_doss/view/widgets/buttons/custom_buttons.dart';
 import 'package:flutter/material.dart';
@@ -88,52 +88,49 @@ class CarUnavailableScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               children: [
+                                /// Start row
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      'All day',
-                                      style: Styles.style14LightMontserrat,
-                                    ),
-                                    CustomSwitch(
-                                      controller.isSwitched,
-                                      controller.swithed,
-                                      true,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 5.h),
-                           /// Start row
-Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: [
-    Text('Start', style: Styles.style12),
-    Row(
-      children: [
-        /// Date Container
-        GestureDetector(
-          onTap: () {
-            controller.pickStartDateTime(context);
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            margin: const EdgeInsets.only(right: 8),
-            decoration: BoxDecoration(
-              border: Border.all(color: AppColors.greyColor3),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text(
-              controller.startDate != null
-                  ? controller.formatDate(controller.startDate!)
-                  : "Select Date",
-              style: Styles.style12,
-            ),
-          ),
-        ),
+                                    Text('Start', style: Styles.style12),
+                                    Row(
+                                      children: [
+                                        /// Date Container
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller.pickStartDateTime(
+                                              context,
+                                            );
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12,
+                                              vertical: 10,
+                                            ),
+                                            margin: const EdgeInsets.only(
+                                              right: 8,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                color: AppColors.greyColor3,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            child: Text(
+                                              controller.startDate != null
+                                                  ? controller.formatDate(
+                                                    controller.startDate!,
+                                                  )
+                                                  : "Select Date",
+                                              style: Styles.style12,
+                                            ),
+                                          ),
+                                        ),
 
-        /// Time Container
-        GestureDetector(
+                                        /// Time Container
+                                        /*   GestureDetector(
           onTap: () {
             controller.pickStartDateTime(context);
           },
@@ -150,22 +147,23 @@ Row(
               style: Styles.style12,
             ),
           ),
-        ),
-      ],
-    ),
-  ],
-),
-SizedBox(height: 8.h),
+        ), */
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 8.h),
 
-/// End row
-Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: [
-    Text('End', style: Styles.style12),
-    Row(
-      children: [
-        /// Date Container
-        GestureDetector(
+                                /// End row
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('End', style: Styles.style12),
+                                    Row(
+                                      children: [
+                                        /// Date Container
+                                        /* GestureDetector(
           onTap: () {
             controller.pickEndDateTime(context);
           },
@@ -184,31 +182,38 @@ Row(
             ),
           ),
         ),
-
-        /// Time Container
-        GestureDetector(
-          onTap: () {
-            controller.pickEndDateTime(context);
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            decoration: BoxDecoration(
-              border: Border.all(color: AppColors.greyColor3),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text(
-              controller.endTime != null
-                  ? controller.endTime!.format(context)
-                  : "Select Time",
-              style: Styles.style12,
-            ),
-          ),
-        ),
-      ],
-    ),
-  ],
-),
-
+ */
+                                        /// Time Container
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller.pickEndDateTime(context);
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12,
+                                              vertical: 10,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                color: AppColors.greyColor3,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            child: Text(
+                                              controller.endTime != null
+                                                  ? controller.endTime!.format(
+                                                    context,
+                                                  )
+                                                  : "Select Time",
+                                              style: Styles.style12,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                           ),

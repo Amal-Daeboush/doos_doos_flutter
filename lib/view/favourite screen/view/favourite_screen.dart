@@ -1,4 +1,4 @@
-import 'package:doss_doss/view/home/widgets/custom_car.dart';
+import 'package:doss_doss/view/home/widgets/car%20card/custom_car.dart';
 import 'package:doss_doss/view/widgets/app%20bar/custom_app_bar.dart';
 import 'package:doss_doss/view/widgets/text%20field/custom_field_search.dart';
 import 'package:flutter/material.dart';

@@ -70,6 +70,7 @@ class CustomTextFormField extends StatelessWidget {
             //  height: 50.h,
             child: TextFormField(onTap:onTap ,
               readOnly: readOnly,
+                maxLines: obscureText ? 1 : (maxLength ?? 1),
               validator:
                   validator ??
                   (value) {
@@ -83,27 +84,22 @@ class CustomTextFormField extends StatelessWidget {
               obscureText: obscureText,
 
               onChanged: onChanged,
-              maxLines: maxLength,
+        
               decoration: InputDecoration(
                 suffixIcon: suffixIcon,
                 //  helperText: hintTextInField,
                 labelText: labelText,
                 //  labelStyle: Styles.style4.copyWith(color: AppColors.black),
                 prefixIcon: prefixIcon,
-                suffix: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child:
-                      isPassWord
-                          ? InkWell(
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            splashColor: Colors.transparent,
-                            onTap: onTapobscure,
-                            child: icon!,
-                          )
-                          : null,
-                ),
+              suffix: Padding(
+  padding: const EdgeInsets.symmetric(vertical: 5),
+  child: isPassWord && icon != null
+      ?GestureDetector(
+          onTap: onTapobscure,
+          child: icon,
+        )
+      : null,
+),
                 helper: helper,
                 hintText: hintTextInField,
                 fillColor:fillColor?? Colors.transparent,
